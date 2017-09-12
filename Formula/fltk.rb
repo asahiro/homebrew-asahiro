@@ -1,10 +1,11 @@
 class Fltk < Formula
 
+
+  desc "Cross-platform C++ GUI toolkit"
 	revision 2
+  homepage "http://www.fltk.org/"
 
 	stable do
-    desc "Cross-platform C++ GUI toolkit"
-		homepage "http://www.fltk.org/"
 		url "http://fltk.org/pub/fltk/1.3.4/fltk-1.3.4-source.tar.gz"
 		mirror "https://ftp.osuosl.org/pub/blfs/conglomeration/fltk/fltk-1.3.4-source.tar.gz"
 		mirror "https://fossies.org/linux/misc/fltk-1.3.4-source.tar.gz"
@@ -12,8 +13,6 @@ class Fltk < Formula
 	end
 
 	devel do
-    desc "fltk development version"
-    homepage "https://www.fltk.org/"
     url "http://www.fltk.org/software.php?VERSION=1.4.x-r12411&FILE=fltk/snapshots/fltk-1.4.x-r12431.tar.bz2"
     sha256 "e3a63d323a4989f87114086e8db80f2e3fc5b319a0c324a8893a0a93c1bf1e9b"
 	end
