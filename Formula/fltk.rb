@@ -13,8 +13,8 @@ class Fltk < Formula
 	end
 
 	devel do
-    url "http://www.fltk.org/software.php?VERSION=1.4.x-r12411&FILE=fltk/snapshots/fltk-1.4.x-r12431.tar.bz2"
-    sha256 "e3a63d323a4989f87114086e8db80f2e3fc5b319a0c324a8893a0a93c1bf1e9b"
+		url "http://www.fltk.org/software.php?VERSION=1.4.x-r12411&FILE=fltk/snapshots/fltk-1.4.x-r12431.tar.gz"
+		sha256 "ae70fcb7293385227462b8af1e1334fad87e3134d6666b17f42a3b16a1218c81"
 	end
 
 	depends_on "libpng"
