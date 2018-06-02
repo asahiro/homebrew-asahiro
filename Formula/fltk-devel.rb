@@ -11,7 +11,7 @@ class FltkDevel < Formula
 
   conflicts_with "fltk", :because => "just a development version"
 
-  patch :DATA
+  patch :p0, :DATA
 
   def install
     inreplace "makeinclude.in" do |s|
@@ -47,8 +47,6 @@ class FltkDevel < Formula
 end
 
 __END__
-Index: fluid/Makefile
-===================================================================
 --- fluid/Makefile.orig 2017-02-16 05:28:13.000000000 +0900
 +++ fluid/Makefile  2018-06-03 07:03:51.000000000 +0900
 @@ -57,13 +57,13 @@ all:  $(FLUID) fluid$(EXEEXT)
