@@ -1,24 +1,14 @@
-class Fltk < Formula
-
-
-  desc "Cross-platform C++ GUI toolkit"
-  revision 2
+class FltkDevel < Formula
+  desc "Cross-platform C++ GUI toolkit (devel)"
   homepage "http://www.fltk.org/"
-
-  stable do
-    url "http://fltk.org/pub/fltk/1.3.4/fltk-1.3.4-source.tar.gz"
-    mirror "https://ftp.osuosl.org/pub/blfs/conglomeration/fltk/fltk-1.3.4-source.tar.gz"
-    mirror "https://fossies.org/linux/misc/fltk-1.3.4-source.tar.gz"
-    sha256 "c8ab01c4e860d53e11d40dc28f98d2fe9c85aaf6dbb5af50fd6e66afec3dc58f"
-  end
-
-  devel do
-    url "http://fltk.org/pub/fltk/snapshots/fltk-1.4.x-r12431.tar.bz2"
-    sha256 "286eb69cc469ac29d338183d94b4f316602e201aef067094afa754aa75568eaa"
-  end
+  url "http://fltk.org/pub/fltk/snapshots/fltk-1.4.x-r12938.tar.gz"
+  version "1.4.x-r12938"
+  sha256 "380010e391ed71c64248a076f2c9cc6b5e0d6d36f7367ddd3c41017e712a05eb"
 
   depends_on "libpng"
   depends_on "jpeg"
+
+  conflicts_with "fltk", :because => "just a development version"
 
   def install
     system "./configure", "--prefix=#{prefix}",
