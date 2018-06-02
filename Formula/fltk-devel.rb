@@ -1,5 +1,6 @@
 class FltkDevel < Formula
   desc "Cross-platform C++ GUI toolkit (devel)"
+  revision 2
   homepage "http://www.fltk.org/"
   url "http://fltk.org/pub/fltk/snapshots/fltk-1.4.x-r12938.tar.gz"
   version "1.4.x-r12938"
@@ -10,7 +11,15 @@ class FltkDevel < Formula
 
   conflicts_with "fltk", :because => "just a development version"
 
+  patch :p0, :DATA
+
+
+  inreplace "makeinclude.in" do |s|
+    s.gsub! /^\.SILENT:$/, ""
+  end
+
   def install
+    system "make", "config.sub"
     system "./configure", "--prefix=#{prefix}",
                           "--enable-threads",
                           "--enable-shared"
@@ -37,3 +46,25 @@ class FltkDevel < Formula
     system "./test"
   end
 end
+
+__END__
+Index: fluid/Makefile
+===================================================================
+--- fluid/Makefile.orig 2017-02-16 05:28:13.000000000 +0900
++++ fluid/Makefile  2018-06-03 07:03:51.000000000 +0900
+@@ -57,13 +57,13 @@ all:  $(FLUID) fluid$(EXEEXT)
+ fluid$(EXEEXT):    $(OBJECTS) $(LIBNAME) $(FLLIBNAME) \
+      $(IMGLIBNAME)
+  echo Linking $@...
+- $(CXX) $(ARCHFLAGS) $(CXXFLAGS) $(LDFLAGS) -o $@ $(OBJECTS) $(LINKFLTKFORMS) $(LINKFLTKIMG) $(LDLIBS)
++ $(CXX) $(ARCHFLAGS) $(CXXFLAGS) -o $@ $(OBJECTS) $(LINKFLTKFORMS) $(LINKFLTKIMG) $(LDLIBS) $(LDFLAGS)
+  $(OSX_ONLY) $(INSTALL_BIN) fluid fluid.app/Contents/MacOS
+ 
+ fluid-shared$(EXEEXT): $(OBJECTS) ../src/$(DSONAME) ../src/$(FLDSONAME) \
+      ../src/$(IMGDSONAME)
+  echo Linking $@...
+- $(CXX) $(ARCHFLAGS) $(CXXFLAGS) $(LDFLAGS) -o $@ $(OBJECTS) $(LINKSHARED) $(LDLIBS)
++ $(CXX) $(ARCHFLAGS) $(CXXFLAGS) -o $@ $(OBJECTS) $(LINKSHARED) $(LDLIBS) $(LDFLAGS)
+ 
+ clean:
+  -$(RM) *.o core.* *~ *.bck *.bak
