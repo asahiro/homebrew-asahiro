@@ -11,7 +11,7 @@ class FltkDevel < Formula
 
   conflicts_with "fltk", :because => "just a development version"
 
-  patch :p0, :DATA
+  patch :DATA
 
   def install
     inreplace "makeinclude.in" do |s|
