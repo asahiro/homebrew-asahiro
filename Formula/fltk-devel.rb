@@ -13,12 +13,11 @@ class FltkDevel < Formula
 
   patch :p0, :DATA
 
-
-  inreplace "makeinclude.in" do |s|
-    s.gsub! /^\.SILENT:$/, ""
-  end
-
   def install
+    inreplace "makeinclude.in" do |s|
+      s.gsub! /^\.SILENT:$/, ""
+    end
+
     system "make", "config.sub"
     system "./configure", "--prefix=#{prefix}",
                           "--enable-threads",
