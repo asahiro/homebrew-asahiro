@@ -47,21 +47,23 @@ class FltkDevel < Formula
 end
 
 __END__
---- fluid/Makefile.orig 2017-02-16 05:28:13.000000000 +0900
-+++ fluid/Makefile  2018-06-03 07:03:51.000000000 +0900
-@@ -57,13 +57,13 @@ all:  $(FLUID) fluid$(EXEEXT)
- fluid$(EXEEXT):    $(OBJECTS) $(LIBNAME) $(FLLIBNAME) \
-      $(IMGLIBNAME)
-  echo Linking $@...
-- $(CXX) $(ARCHFLAGS) $(CXXFLAGS) $(LDFLAGS) -o $@ $(OBJECTS) $(LINKFLTKFORMS) $(LINKFLTKIMG) $(LDLIBS)
-+ $(CXX) $(ARCHFLAGS) $(CXXFLAGS) -o $@ $(OBJECTS) $(LINKFLTKFORMS) $(LINKFLTKIMG) $(LDLIBS) $(LDFLAGS)
-  $(OSX_ONLY) $(INSTALL_BIN) fluid fluid.app/Contents/MacOS
- 
- fluid-shared$(EXEEXT): $(OBJECTS) ../src/$(DSONAME) ../src/$(FLDSONAME) \
-      ../src/$(IMGDSONAME)
-  echo Linking $@...
-- $(CXX) $(ARCHFLAGS) $(CXXFLAGS) $(LDFLAGS) -o $@ $(OBJECTS) $(LINKSHARED) $(LDLIBS)
-+ $(CXX) $(ARCHFLAGS) $(CXXFLAGS) -o $@ $(OBJECTS) $(LINKSHARED) $(LDLIBS) $(LDFLAGS)
- 
+Index: fluid/Makefile
+===================================================================
+--- fluid/Makefile.orig	2017-02-16 05:28:13.000000000 +0900
++++ fluid/Makefile	2018-06-03 07:03:51.000000000 +0900
+@@ -57,13 +57,13 @@ all:	$(FLUID) fluid$(EXEEXT)
+ fluid$(EXEEXT):		$(OBJECTS) $(LIBNAME) $(FLLIBNAME) \
+ 			$(IMGLIBNAME)
+ 	echo Linking $@...
+-	$(CXX) $(ARCHFLAGS) $(CXXFLAGS) $(LDFLAGS) -o $@ $(OBJECTS) $(LINKFLTKFORMS) $(LINKFLTKIMG) $(LDLIBS)
++	$(CXX) $(ARCHFLAGS) $(CXXFLAGS) -o $@ $(OBJECTS) $(LINKFLTKFORMS) $(LINKFLTKIMG) $(LDLIBS) $(LDFLAGS)
+ 	$(OSX_ONLY) $(INSTALL_BIN) fluid fluid.app/Contents/MacOS
+
+ fluid-shared$(EXEEXT):	$(OBJECTS) ../src/$(DSONAME) ../src/$(FLDSONAME) \
+ 			../src/$(IMGDSONAME)
+ 	echo Linking $@...
+-	$(CXX) $(ARCHFLAGS) $(CXXFLAGS) $(LDFLAGS) -o $@ $(OBJECTS) $(LINKSHARED) $(LDLIBS)
++	$(CXX) $(ARCHFLAGS) $(CXXFLAGS) -o $@ $(OBJECTS) $(LINKSHARED) $(LDLIBS) $(LDFLAGS)
+
  clean:
-  -$(RM) *.o core.* *~ *.bck *.bak
+ 	-$(RM) *.o core.* *~ *.bck *.bak
